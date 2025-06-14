@@ -30,3 +30,18 @@
    { "quantity": 5 }
 
     ```
+
+### Endpoint: localhost:3500/api/mocks/generateData/pet
+
+- En router mocks:
+    + ruta agregada:
+        + router.post('/generateData/pet', petsController.generateAndInsertPets);
+    
+    + pets.controller.js:
+        + función generateAndInsertPets añadida, crea una cantidad de mascotas especificada mediante el parámetro quantity que se pasa por la request y añade las mascotas a la base de datos
+
+        ```
+
+        Ej de request:  { "quantity": 5 }
+
+        ```

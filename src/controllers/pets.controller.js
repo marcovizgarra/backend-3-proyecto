@@ -71,11 +71,49 @@ const createPetWithImage = async(req,res) =>{
     const result = await petsService.create(pet);
     res.send({status:"success",payload:result})
 }
+
+const generateAndInsertPets = async (req, res) => {
+    const { quantity } = req.body;
+
+    if (!quantity)
+        return res.status(400).send({
+            status: 'error',
+            error: 'Incomplete values'
+        });
+
+    const petType = (quantity) => {
+        if ((parseInt(quantity) % 2) !== 0) {
+            return 'cat'
+        } else {
+            return 'dog'
+        }
+    };
+
+    try {
+        for (let p = 0; p < quantity; p++) {
+            const specie = petType(p);
+            await petsService.create(
+                {
+                    name: specie === 'cat' ? faker.animal.cat() : faker.animal.dog(),
+                    specie: specie,
+                    birthDate: faker.date.past(),
+                    image: 'no-image'
+                }
+            )
+        }
+    } catch (error) {
+        throw new Error(error);
+    }
+   
+    res.send('Datos insertados correctamente')
+}
+
 export default {
     getAllPets,
     createPet,
     updatePet,
     deletePet,
     createPetWithImage,
-    generateFakePet
+    generateFakePet,
+    generateAndInsertPets
 }
