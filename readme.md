@@ -18,7 +18,7 @@
 
 - En router mocks:
     + ruta agregada: 
-        + router.post('/generate/user', usersController.generateFakeUser);
+        + router.get('/generate/user', usersController.generateFakeUser);
     
     + user.controller.js:
         + función generateFakeUser añadida, crea la cantidad de usuarios solicitados mediante la request
