@@ -47,10 +47,40 @@ const generateFakeUser = (req, res) => {
     res.send( users )
 }
 
+const generateAndInstertUser = async (req, res) => {
+    const { quantity } = req.body;
+
+    if (!quantity)
+        return res.status(400).send({
+            status: 'error',
+            error: 'Incomplete values'
+        });
+
+    try {
+        for (let u = 0; u < quantity; u++) {
+            await usersService.create(
+                {
+                    first_name: faker.person.firstName(),
+                    last_name: faker.person.lastName(),
+                    email: faker.internet.email().toLocaleLowerCase(),
+                    password: faker.internet.password(),
+                    role: 'user',
+                    pets: []
+                }
+            )
+        }
+    } catch (error) {
+        throw new Error(error)
+    }
+
+    res.send('Usuario/s creado/s correctamente');
+}
+
 export default {
     deleteUser,
     getAllUsers,
     getUser,
     updateUser,
-    generateFakeUser
+    generateFakeUser,
+    generateAndInstertUser
 }

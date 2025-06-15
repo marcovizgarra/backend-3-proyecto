@@ -9,14 +9,14 @@
 
     ```
 
-    Ej de request apuntando a localhost:3500/api/mocks/generate/pet
+    Ej de request:
     
     { "quantity": 10 }
 
     ```
 ### Endpoint: localhost:3500/api/mocks/generate/user
 
-- En router mocks:
+- En router mocks.router.js:
     + ruta agregada: 
         + router.get('/generate/user', usersController.generateFakeUser);
     
@@ -25,7 +25,7 @@
     
     ```
 
-    Ejemplo de request apuntando a localhost:3500/api/mocks/generate/user
+    Ejemplo de request:
 
    { "quantity": 5 }
 
@@ -33,12 +33,27 @@
 
 ### Endpoint: localhost:3500/api/mocks/generateData/pet
 
-- En router mocks:
+- En mocks.router.js:
     + ruta agregada:
         + router.post('/generateData/pet', petsController.generateAndInsertPets);
     
     + pets.controller.js:
         + función generateAndInsertPets añadida, crea una cantidad de mascotas especificada mediante el parámetro quantity que se pasa por la request y añade las mascotas a la base de datos
+
+        ```
+
+        Ej de request:  { "quantity": 5 }
+
+        ```
+
+### Enpoint: localhost:3500/api/mocks/generateData/user
+
+- En mocks.router.js:
+    + ruta agregada: 
+        + router.post('/generateData/user', usersController.generateAndInstertUser);
+    
+    + users.controller.js
+        + función generateAndInstertUser añadida
 
         ```
 
