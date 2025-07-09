@@ -9,6 +9,8 @@ import adoptionsRouter from './routes/adoption.router.js';
 import sessionsRouter from './routes/sessions.router.js';
 import mocksRouter from './routes/mocks.router.js';
 
+import { setUpSwagger } from './swagger.js';
+
 const app = express();
 const PORT = process.env.PORT||8080;
 const URLMONGO = process.env.URLMongoDb;
@@ -23,4 +25,6 @@ app.use('/api/adoptions',adoptionsRouter);
 app.use('/api/sessions',sessionsRouter);
 app.use('/api/mocks', mocksRouter);
 
-app.listen(PORT,()=>console.log(`Listening on ${PORT}`))
+setUpSwagger(app);
+
+app.listen(PORT,()=>console.log(`Listening on ${PORT}`));
