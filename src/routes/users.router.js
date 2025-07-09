@@ -41,8 +41,63 @@ const router = Router();
  *         description: Usuario no encontrado
  */
 
-router.get('/',usersController.getAllUsers);
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   put:
+ *     summary: 'Actualizar datos de un usuario por ID'
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID del usuario
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               first_name:
+ *                 type: string
+ *                 description: Nombre del usuario
+ *               last_name:
+ *                 type: string
+ *                 description: Apellido del usuario
+ *               email:
+ *                 type: string
+ *                 description: Email del usuario
+ *     responses:
+ *       200: 
+ *         description: 'User Updated'
+ *       404:
+ *         description: 'User not found'
+ */
 
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   delete:
+ *     summary: Eliminar usuario por ID
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID del usuario
+ *     responses:
+ *       200:
+ *         description: 'User Deleted'
+ *       404:
+ *         description: 'User not found'
+ */
+
+router.get('/',usersController.getAllUsers);
 router.get('/:uid',usersController.getUser);
 router.put('/:uid',usersController.updateUser);
 router.delete('/:uid',usersController.deleteUser);
