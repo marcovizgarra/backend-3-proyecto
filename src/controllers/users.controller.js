@@ -29,7 +29,7 @@ const deleteUser = async(req,res) =>{
 }
 
 const generateFakeUser = (req, res) => {
-    const { quantity } = req.body;
+    const quantity = parseInt(req.query.quantity) || 1;
     const users = [];
 
     for (let u = 0; u < quantity; u++) {

@@ -17,7 +17,7 @@ const createPet = async (req, res) => {
 }
 
 const generateFakePet = async (req, res) => {
-    const { quantity } = req.body;
+    const quantity = parseInt(req.query.quantity) || 1;
     const pets = [];
 
 
